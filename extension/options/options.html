@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web2PG Settings</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    header {
+      background: #2196F3;
+      color: white;
+      padding: 24px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 24px;
+    }
+
+    .section {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #2196F3;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background: #2196F3;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1976D2;
+    }
+
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .status-message {
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .status-message.success {
+      display: block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+    }
+
+    .status-message.error {
+      display: block;
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border: 1px solid #bbdefb;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .info-box h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #1976D2;
+    }
+
+    .info-box p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .info-box code {
+      background: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Web2PG Settings</h1>
+      <p>Configure your intelligent web archiver</p>
+    </header>
+
+    <div class="content">
+      <div id="statusMessage" class="status-message"></div>
+
+      <div class="info-box">
+        <h3>Quick Start</h3>
+        <p>
+          Before using Web2PG, make sure the proxy server is running. Navigate to the
+          <code>proxy-server</code> directory and run: <code>npm start</code>
+        </p>
+      </div>
+
+      <form id="settingsForm">
+        <!-- Connection Settings -->
+        <div class="section">
+          <h2>Connection Settings</h2>
+
+          <div class="form-group">
+            <label for="proxyUrl">Proxy Server URL</label>
+            <input type="text" id="proxyUrl" name="proxyUrl" value="http://localhost:3000/api">
+            <div class="help-text">URL of the local proxy server</div>
+          </div>
+        </div>
+
+        <!-- AI Settings -->
+        <div class="section">
+          <h2>AI Analysis Settings</h2>
+
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="enableAiAnalysis" name="enableAiAnalysis">
+              <label for="enableAiAnalysis">Enable AI Analysis</label>
+            </div>
+            <div class="help-text">Automatically generate summaries and extract tags using AI</div>
+          </div>
+
+          <div class="form-group">
+            <label for="openaiApiKey">OpenAI API Key</label>
+            <input type="password" id="openaiApiKey" name="openaiApiKey" placeholder="sk-...">
+            <div class="help-text">Your OpenAI API key (optional, required for AI features)</div>
+          </div>
+
+          <div class="form-group">
+            <label for="dailyTokenLimit">Daily Token Limit</label>
+            <input type="number" id="dailyTokenLimit" name="dailyTokenLimit" value="100000" min="0">
+            <div class="help-text">Maximum tokens to use per day (prevents unexpected costs)</div>
+          </div>
+        </div>
+
+        <!-- Image Settings -->
+        <div class="section">
+          <h2>Image Settings</h2>
+
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="autoSaveImages" name="autoSaveImages" checked>
+              <label for="autoSaveImages">Automatically Save Images</label>
+            </div>
+            <div class="help-text">Download images when saving pages</div>
+          </div>
+
+          <div class="form-group">
+            <label for="imageThreshold">Image Download Threshold (bytes)</label>
+            <input type="number" id="imageThreshold" name="imageThreshold" value="524288" min="0">
+            <div class="help-text">
+              Images smaller than this will be downloaded, larger images will be stored as URLs only (default: 500KB)
+            </div>
+          </div>
+        </div>
+
+        <!-- Deduplication Settings -->
+        <div class="section">
+          <h2>Deduplication Settings</h2>
+
+          <div class="form-group">
+            <label for="deduplicationStrategy">Duplicate Handling Strategy</label>
+            <select id="deduplicationStrategy" name="deduplicationStrategy">
+              <option value="ask">Ask me what to do</option>
+              <option value="skip">Skip duplicates automatically</option>
+              <option value="merge">Merge duplicates automatically</option>
+            </select>
+            <div class="help-text">How to handle when a duplicate page is detected</div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button type="submit" class="btn-primary">Save Settings</button>
+          <button type="button" id="resetBtn" class="btn-secondary">Reset to Defaults</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

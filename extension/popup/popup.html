@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web2PG</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/icon48.png" alt="Web2PG Logo" class="logo-icon">
+        <h1>Web2PG</h1>
+      </div>
+      <div class="header-actions">
+        <button id="optionsBtn" class="icon-btn" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Save Page Section -->
+    <section class="save-section">
+      <h2>Save Current Page</h2>
+      <div class="page-info">
+        <div class="page-url" id="currentPageUrl">Loading...</div>
+        <div class="page-title" id="currentPageTitle">Loading...</div>
+      </div>
+
+      <!-- OCR Analysis Option -->
+      <div class="ocr-option">
+        <label class="checkbox-label">
+          <input type="checkbox" id="enableOCR">
+          <span>Enable AI Analysis (OCR + LLM)</span>
+        </label>
+        <small style="display: block; margin-top: 5px; color: var(--text-secondary);">
+          Extract tags, actors, and more using DeepSeek-OCR and AI
+        </small>
+      </div>
+
+      <button id="savePageBtn" class="btn btn-primary btn-large">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+          <polyline points="17 21 17 13 7 13 7 21"/>
+          <polyline points="7 3 7 8 15 8"/>
+        </svg>
+        Save to Archive
+      </button>
+      <div id="saveStatus" class="status-message"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <h2>Search Archive</h2>
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search saved pages..."
+          autocomplete="off"
+        >
+        <button id="searchBtn" class="search-btn" title="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Search Results -->
+    <section id="resultsSection" class="results-section" style="display: none;">
+      <div class="results-header">
+        <h3>Search Results</h3>
+        <span id="resultsCount" class="results-count"></span>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <h2>Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="totalPages">-</div>
+          <div class="stat-label">Pages</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalTags">-</div>
+          <div class="stat-label">Tags</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalImages">-</div>
+          <div class="stat-label">Images</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="connection-status" id="connectionStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">Connecting...</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
