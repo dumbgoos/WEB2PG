@@ -1,40 +1,6 @@
-# Web2PG - Intelligent Web Archiver
+# Web2PG: The AI-Powered Web Archiver for PostgreSQL
 
-A powerful browser extension that saves, cleans, searches, and analyzes web pages with AI-powered archiving to PostgreSQL.
-
-## Features
-
-- **One-Click Save**: Save entire webpages with a single click
-- **Smart Content Extraction**: Automatically extracts main content, images, and metadata
-- **Full-Page Screenshots**: Capture entire pages including content below the fold
-- **OCR Text Recognition**: Extract text from screenshots using DeepSeek-OCR
-- **AI Entity Extraction**: Automatically extract structured information (videos, articles, products)
-- **Full-Text Search**: PostgreSQL-powered search with ranking and relevance
-- **Intelligent Deduplication**: Detects duplicate and similar content
-- **Hybrid Image Storage**: Downloads small images, stores URLs for large ones
-- **Tag System**: Manual and AI-generated tags for organization
-- **Relationship Tracking**: Links related pages together
-
-## Architecture
-
-```
-Browser Extension → Local Proxy Server → PostgreSQL Database
-                                         ↓
-                                    OCR Service (Optional)
-                                         ↓
-                                    LLM API (Optional)
-```
-
-The browser extension cannot directly connect to PostgreSQL due to browser security restrictions, so we use a lightweight local HTTP proxy server.
-
-## Prerequisites
-
-- **Node.js** 18.0 or higher
-- **PostgreSQL** 12 or higher
-- **Chrome** or **Edge** browser (Chromium-based)
-- **Python** 3.8+ (for OCR service, optional)
-- (Optional) **OpenAI API key** for AI features
-- (Optional) **DeepSeek-OCR model** for OCR text extraction
+Transform unstructured web content into a clean, searchable knowledge base for AI training and data analysis. Web2PG is a powerful browser extension that intelligently captures, cleans, and stores web pages directly into your PostgreSQL database. It's the essential tool for developers and researchers building high-quality datasets for LLM training, RAG applications, or long-term web archiving.
 
 ## Installation
 
